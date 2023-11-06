@@ -98,7 +98,7 @@
         var num2 = Math.floor(Math.random() * (11 - num1 + 1)); // 0到(10- num1)的随机数，包括0和10
         var operation = Math.random() < 0.5 ? '+' : '-';
         var correctAnswer = operation === '+' ? num1 + num2 : num1 - num2;
-        if (operation === '-' && correctAnswer < 0 || num1 == 0 || num2 == 0) {
+        if (operation === '-' && correctAnswer <= 0 || operation === '+' && correctAnswer > 10 || num1 == 0 || num2 == 0) {
           // 避免负数结果，重新生成题目
           generateQuestion();
         } else {
