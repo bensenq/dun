@@ -19,7 +19,7 @@
       background-color: #f0f0f0;
     }
     #question {
-      font-size: 4em;
+      font-size: 8em;
       text-align: center;
       max-width: 100%;
       padding: 0.1em;
@@ -54,18 +54,17 @@
   </div>
   <script>
     var questionCount = 0;
-    var maxQuestions = 10;
+    var maxQuestions = 0;
     var startTime;
     var endTime;
-    var totalTime = 0;
-    var timing = false;
+    var totalTime;
+    var timing;
 
     document.getElementById("startButton").addEventListener("click", function() {
       maxQuestions = parseInt(document.getElementById("totalQuestions").value);
       questionCount = 0;
       totalTime = 0;
       document.getElementById("settings").style.display = "none";
-      startTiming();
       generateQuestion();
     });
 
@@ -117,13 +116,15 @@
       document.getElementById("question").textContent = "";
       document.getElementById("counter").textContent = "";
       document.getElementById("restartButton").style.display = "none";
+      questionCount = 0;
+      maxQuestions = 0;
     });
 
-    document.getElementById("question").addEventListener("click", function() {
-      if (questionCount <= maxQuestions) {
+    document.addEventListener("click", function() {
+      if (timing == true && questionCount <= maxQuestions) {
         generateQuestion();
       }
-    });
+    }, true);
   </script>
 </body>
 </html>
